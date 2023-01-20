@@ -1,13 +1,15 @@
 import React from 'react'
 import './Header.css'
-import {Link} from 'react-router-dom'
+import {Link, useNavigate} from 'react-router-dom'
 import { FaHome} from "react-icons/fa";
 
 function Header() {
     const categories = ["Health", "Food", "Travel", "Technology"]
+
+    let navigate = useNavigate();
   return (
     <div className="header-container">
-    <FaHome />
+    <FaHome onClick={() => navigate("/")}/>
         <div className='categories-container'>
             {
                 categories.map(item => <Link to={`/category/${item}` }

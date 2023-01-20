@@ -1,9 +1,3 @@
-*{
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-}
-
 .header-container{
     height: 60px;
     display: flex;
@@ -22,6 +16,10 @@
 .nav-link, .auth-link {
     text-decoration: none;
     margin: 0 10px;
+}
+
+.nav-link {
+    color: black;
 }
 
 .auth-link{
