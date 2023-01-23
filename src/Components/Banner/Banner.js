@@ -15,8 +15,14 @@ function Banner() {
             //create a reference to articles collection
             const articleRef = collection(db, 'articles')
 
+            //set up query to filter the data
+            const q = query(articleRef, orderBy('createdAt', 'desc'),
+                limit(5))
+
             //get documents from this collection
-            getDocs(articleRef)
+            //getDocs(articleRef)
+            //to use the query
+            getDocs(q, articleRef)
             .then(res => {
                 //console.log(res.docs[0].data())
                 //get data and store in an array
