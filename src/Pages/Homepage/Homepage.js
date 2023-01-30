@@ -4,7 +4,7 @@ import './Homepage.css'
 
 function Homepage() {
   return (
-    <div>
+    <div className="homepage-container">
         <Banner />
     </div>
   )
