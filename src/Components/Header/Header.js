@@ -14,9 +14,21 @@ function Header() {
     const categories = ["Health", "Food", "Travel", "Technology"]
 
     let navigate = useNavigate();
+
+    const handleLogout = () => {
+      signOut(auth)
+      navigate('/')
+    }
+
   return (
     <div className="header-container">
     <FaHome onClick={() => navigate("/")} className="fa-home"/>
+    {
+      user?
+      <Link to="/addarticle" className="auth-link">Add Article</Link>
+      :
+      null
+    }
         <div className='categories-container'>
             {
                 categories.map(item => <Link to={`/category/${item}` }
@@ -28,7 +40,7 @@ function Header() {
           <div>
             <span className="username">{user.displayName}</span>
             <button className="auth-link"
-              onClick={() => signOut(auth)}>Logout</button>
+              onClick={handleLogout}>Logout</button>
           </div>
           :
           <Link className="auth-link" to="/auth">Signup</Link>

@@ -1,0 +1,25 @@
+.article-card{
+    height: fit-content;
+    margin: 10px;
+    width: 400px; 
+}
+
+.article-card img{
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.article-card-info{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 0 20px;
+}
+
+.article-card-info a{
+    text-decoration: none;
+    color: red;
+    font-size: 0.7rem;
+    cursor: pointer;
+}

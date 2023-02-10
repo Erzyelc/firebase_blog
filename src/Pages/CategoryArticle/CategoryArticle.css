@@ -1,0 +1,5 @@
+.category-articles{
+    display: flex;
+    flex-wrap: wrap;
+    min-height: 80vh;
+}

@@ -5,9 +5,12 @@ import {ref, uploadBytes, getDownloadURL} from 'firebase/storage'
 import {v4} from 'uuid'
 import {collection, addDoc, Timestamp} from 'firebase/firestore'
 import {useAuthState} from 'react-firebase-hooks/auth'
+import {toast} from 'react-toastify'
+import {useNavigate} from 'react-router-dom'
 
 function AddArticle() {
     const [user] = useAuthState(auth)
+    let navigate = useNavigate()
 
     const categories = ["Health", "Food", "Travel", "Technology"]
 
@@ -52,10 +55,22 @@ function AddArticle() {
                 })
             })
             .then(res => {
-                alert('article saved')
+                //alert('article saved')
+                toast('Article Saved!', {
+                    type: "success",
+                    autoClose: 1500
+                })
+                //delay navigate to home
+                setTimeout(() => {
+                    navigate('/')
+                }, 2000)          
             })
         })
-        .catch(err => console.log(err))
+        .catch(err => {
+            //console.log(err))
+            toast("Could not save", {
+                type: "error"})
+        })
     }
 
   return (
