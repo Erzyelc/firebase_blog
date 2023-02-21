@@ -13,6 +13,40 @@ function Likes(articleId) {
 
    //create state for whether this article has been liked by the user 
     const [isLiked, setIsLiked] = React.useState(false)
+    const [likeCount, setLikeCount] = React.useState(0)
+
+    React.useEffect(
+        () => {
+            //did this user like this article?
+            const likesRef = collection(db, 'likes')
+            if (user) {
+                const q = query(likesRef,
+                    where("articleId", "==", articleId),
+                    where("userId", "==", user?.uid)
+                    )
+                    //look for a match
+                    getDocs(q, likesRef)
+                    .then( res => {
+                        //check the size
+                        if(res.size > 0){
+                            setIsLiked(true)
+                        }
+                    })
+                    .catch(err => console.log(err))
+            }
+
+            //now find out how many likes
+            const q2 = query(likesRef, 
+                where("articleId", "==", articleId)
+                )
+                getDocs(q2, likesRef)
+                .then(res => {
+                    setLikeCount(res.size)
+                })
+                .catch(err => console.log(err))
+
+        }, [user, isLiked]
+    )
 
     const handleLike = () => {
         //make sure a user is logged in
@@ -66,11 +100,13 @@ function Likes(articleId) {
         {
             isLiked?
             <div className="like-icon" onClick={handleUnlike}>
-                <FaHeart />
+                <FaHeart /> 
+                <span>{likeCount}</span>
             </div>
             :
             <div className="like-icon" onClick={handleLike}>
                 <FaRegHeart />
+                <span>{likeCount}</span>
             </div>
         }
     </div>
