@@ -4,6 +4,7 @@ import {useParams} from 'react-router-dom'
 import { db } from '../../Config/FirebaseConfig'
 import {getDoc, doc} from 'firebase/firestore'
 import Likes from '../../Components/Likes/Likes'
+import Comments from '../../Components/Comments/Comments'
 
 function ArticleDetails() {
     //need to know article id
@@ -44,6 +45,7 @@ function ArticleDetails() {
             <p className="article-description">{article?.paragraphTwo}</p>
             <p className="article-description">{article?.paragraphThree}</p>   
         </div>
+        <Comments articleId={articleId}/>
     </div>
   )
 }
